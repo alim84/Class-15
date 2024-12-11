@@ -16,20 +16,20 @@ let db_Url = mongoose
 
 app.use(express.json());
 
-app.get("/",async (req, res) => {
-  let user = await userModel.find({})
-  res.sendStatus({user})
+app.get("/user", async (req, res) => {
+  let user = await userModel.find({}).populate("post");
+  res.sendStatus({ user });
 });
 
 app.post("/create/user", async (req, res) => {
   let { name, email } = req.body;
- 
+
   let users = new userModel({
     name,
-    email
+    email,
   });
   await users.save();
-
+  res.send({ user });
 });
 app.post("/create/post", async (req, res) => {
   let { title, user } = req.body;

@@ -1,7 +1,7 @@
 const { default: mongoose, Schema } = require("mongoose");
 
-let Post = new Schema({
+let PostSchema = new Schema({
   title: String,
 });
 
-module.exports = mongoose.model("Post", Post);
+module.exports = mongoose.model("Post", PostSchema);
